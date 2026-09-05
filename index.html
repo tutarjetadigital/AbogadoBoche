@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjeta Digital - BOCHE & ASOCIADOS</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --brand-gold: #f59e0b;
+            --brand-gold-dark: #d97706;
+            --brand-bg-dark: #0b0f17;
+            --brand-card-dark: #111827;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #050811;
+            background-image: 
+                radial-gradient(rgba(245, 158, 11, 0.12) 1.2px, transparent 1.2px),
+                radial-gradient(rgba(30, 41, 59, 0.5) 1.2px, transparent 1.2px);
+            background-size: 28px 28px;
+            background-position: 0 0, 14px 14px;
+            color: #f1f5f9;
+        }
+
+        .serif-font {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Contenedor tipo Tarjeta Móvil / App Wrapper - Estilo Oscuro */
+        .card-container {
+            width: 100%;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #0f172a;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(217, 119, 6, 0.2);
+        }
+
+        @media (min-width: 480px) {
+            .card-container {
+                max-width: 440px;
+                margin: 2rem auto;
+                min-height: auto;
+                border-radius: 32px;
+                overflow: hidden;
+                border: 1px solid rgba(245, 158, 11, 0.35);
+            }
+        }
+
+        /* Banner Superior Jurídico Oscuro */
+        .main-bg {
+            background-image: 
+                linear-gradient(180deg, rgba(11, 15, 23, 0.65) 0%, rgba(15, 23, 42, 0.98) 100%),
+                url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 220px;
+            position: relative;
+        }
+
+        /* Sección del contenido */
+        .content-section {
+            background: linear-gradient(180deg, #0f172a 0%, #0b0f17 100%);
+            margin-top: -45px;
+            border-top-left-radius: 36px;
+            border-top-right-radius: 36px;
+            position: relative;
+            padding-bottom: 2.5rem;
+            flex-grow: 1;
+            border-top: 3.5px solid #f59e0b;
+            box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Contenedor de la foto con Zoom */
+        .profile-container {
+            position: relative;
+            width: 135px;
+            height: 135px;
+            margin-top: -80px;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 9999px;
+            border: 3.5px solid #f59e0b;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 25px rgba(245, 158, 11, 0.4);
+            background: #0b0f17;
+            padding: 4px;
+            object-fit: cover;
+            transform: scale(1.35); /* Zoom a la foto de perfil */
+            transition: transform 0.3s ease;
+        }
+
+        /* Insignia de Verificación Jurídica */
+        .verification-badge {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #0f172a;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Animación Glow Dorado */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.6); }
+        }
+        .glow-effect {
+            animation: pulseGlow 4s infinite;
+        }
+
+        /* Estilos de Botones */
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.5);
+        }
+
+        .btn-tiktok {
+            background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .btn-tiktok:hover {
+            transform: translateY(-2px);
+            border-color: rgba(52, 211, 153, 0.4);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.6);
+        }
+
+        .btn-facebook {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 18px rgba(29, 78, 216, 0.3);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+        .btn-facebook:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(29, 78, 216, 0.5);
+        }
+
+        /* Notificación Toast */
+        .toast-notification {
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-0 sm:p-4">
+
+    <div class="card-container">
+        
+        <!-- Línea superior dorada e imponente -->
+        <div class="h-2 w-full bg-gradient-to-r from-amber-600 via-amber-400 to-amber-700"></div>
+
+        <!-- SECCIÓN DE BANNER SUPERIOR JURÍDICO -->
+        <div class="main-bg flex items-start justify-end p-4">
+            <button onclick="shareCard()" class="bg-slate-900/80 hover:bg-slate-800 text-amber-400 p-2.5 rounded-full border border-amber-500/40 backdrop-blur-md transition-all shadow-md active:scale-95" title="Compartir Tarjeta">
+                <i class="fas fa-share-alt text-sm"></i>
+            </button>
+        </div>
+
+        <div class="content-section">
+            <div class="flex flex-col items-center px-5 text-center">
+                
+                <!-- Foto de Perfil con Zoom -->
+                <div class="profile-container">
+                    <div class="relative w-full h-full glow-effect rounded-full overflow-hidden">
+                        <img src="https://i.postimg.cc/mr35pV3Z/Whats-App-Image-2026-09-04-at-1-03-04-PM.jpg" 
+                             alt="BOCHE & ASOCIADOS" 
+                             class="profile-pic"
+                             onerror="this.onerror=null; this.src='https://placehold.co/300x300/0f172a/f59e0b?text=BOCHE+%26+ASOCIADOS';" />
+                    </div>
+                    <div class="verification-badge" title="Firma Jurídica Colegiada">
+                        <i class="fas fa-check text-xs font-black"></i>
+                    </div>
+                </div>
+
+                <!-- Título e Identidad Actualizada -->
+                <div class="mt-4 flex flex-col items-center justify-center">
+                    <h1 class="text-3xl font-extrabold text-white tracking-tight serif-font">BOCHE & ASOCIADOS</h1>
+                    <p class="text-xs font-extrabold uppercase tracking-widest text-amber-300 mt-2 bg-amber-950/60 px-4 py-1.5 rounded-full border border-amber-500/40 shadow-inner">
+                        Asesoría Jurídica-Financiera y Servicios Notariales
+                    </p>
+                </div>
+
+                <!-- Lema Profesional sin comillas -->
+                <p class="text-xs text-slate-300 mt-3 font-medium tracking-wide max-w-xs leading-relaxed">
+                    Defensa técnica, representación legal y asesoramiento jurídico integral de alta confianza.
+                </p>
+
+                <!-- Servicios Destacados -->
+                <div class="w-full mt-6 text-left">
+                    <div class="flex items-center justify-between mb-3 border-b border-slate-800 pb-2">
+                        <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Servicios</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+                        <div class="bg-slate-800/90 border border-slate-700/80 rounded-xl p-2.5 flex items-start gap-2.5 shadow-sm hover:border-amber-500/60 transition-all">
+                            <div class="p-1.5 rounded-lg bg-amber-500/10 text-amber-400 flex-shrink-0 mt-0.5 border border-amber-500/20">
+                                <i class="fas fa-building-columns text-xs"></i>
+                            </div>
+                            <span class="font-medium text-slate-200 leading-snug">Constitución de sociedades anónimas</span>
+                        </div>
+                        <div class="bg-slate-800/90 border border-slate-700/80 rounded-xl p-2.5 flex items-start gap-2.5 shadow-sm hover:border-amber-500/60 transition-all">
+                            <div class="p-1.5 rounded-lg bg-amber-500/10 text-amber-400 flex-shrink-0 mt-0.5 border border-amber-500/20">
+                                <i class="fas fa-id-card text-xs"></i>
+                            </div>
+                            <span class="font-medium text-slate-200 leading-snug">Registro de empresa mercantil y comerciante individual</span>
+                        </div>
+                        <div class="bg-slate-800/90 border border-slate-700/80 rounded-xl p-2.5 flex items-start gap-2.5 shadow-sm hover:border-amber-500/60 transition-all">
+                            <div class="p-1.5 rounded-lg bg-amber-500/10 text-amber-400 flex-shrink-0 mt-0.5 border border-amber-500/20">
+                                <i class="fas fa-users-rectangle text-xs"></i>
+                            </div>
+                            <span class="font-medium text-slate-200 leading-snug">Celebración de toda clase de asamblea de accionistas</span>
+                        </div>
+                        <div class="bg-slate-800/90 border border-slate-700/80 rounded-xl p-2.5 flex items-start gap-2.5 shadow-sm hover:border-amber-500/60 transition-all">
+                            <div class="p-1.5 rounded-lg bg-amber-500/10 text-amber-400 flex-shrink-0 mt-0.5 border border-amber-500/20">
+                                <i class="fas fa-file-signature text-xs"></i>
+                            </div>
+                            <span class="font-medium text-slate-200 leading-snug">Elaboración de contratos individuales de trabajo</span>
+                        </div>
+                        <div class="bg-slate-800/90 border border-slate-700/80 rounded-xl p-2.5 flex items-start gap-2.5 shadow-sm hover:border-amber-500/60 transition-all">
+                            <div class="p-1.5 rounded-lg bg-amber-500/10 text-amber-400 flex-shrink-0 mt-0.5 border border-amber-500/20">
+                                <i class="fas fa-book-bookmark text-xs"></i>
+                            </div>
+                            <span class="font-medium text-slate-200 leading-snug">Reglamento interior de trabajo</span>
+                        </div>
+                        <div class="bg-slate-800/90 border border-slate-700/80 rounded-xl p-2.5 flex items-start gap-2.5 shadow-sm hover:border-amber-500/60 transition-all">
+                            <div class="p-1.5 rounded-lg bg-amber-500/10 text-amber-400 flex-shrink-0 mt-0.5 border border-amber-500/20">
+                                <i class="fas fa-gavel text-xs"></i>
+                            </div>
+                            <span class="font-medium text-slate-200 leading-snug">Defensa procesal en materia: laboral, civil, penal, familia, etc.</span>
+                        </div>
+                        <div class="bg-slate-800/90 border border-slate-700/80 rounded-xl p-2.5 flex items-start gap-2.5 shadow-sm hover:border-amber-500/60 transition-all">
+                            <div class="p-1.5 rounded-lg bg-amber-500/10 text-amber-400 flex-shrink-0 mt-0.5 border border-amber-500/20">
+                                <i class="fas fa-handshake-simple text-xs"></i>
+                            </div>
+                            <span class="font-medium text-slate-200 leading-snug">Elaboración de demandas y estrategias de negociación</span>
+                        </div>
+                        <div class="bg-slate-800/90 border border-slate-700/80 rounded-xl p-2.5 flex items-start gap-2.5 shadow-sm hover:border-amber-500/60 transition-all">
+                            <div class="p-1.5 rounded-lg bg-amber-500/10 text-amber-400 flex-shrink-0 mt-0.5 border border-amber-500/20">
+                                <i class="fas fa-ring text-xs"></i>
+                            </div>
+                            <span class="font-medium text-slate-200 leading-snug">Celebración de matrimonios</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div class="w-full mt-6">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-2.5">Redes Sociales Oficiales</span>
+                    <div class="grid grid-cols-2 gap-3">
+                        <!-- TikTok -->
+                        <a href="https://www.tiktok.com/@el_boche69?_r=1&_t=ZS-99STFGVjhdi" target="_blank" rel="noopener noreferrer" class="btn-tiktok py-3 px-3 rounded-2xl flex items-center justify-center gap-2 text-xs font-bold active:scale-95">
+                            <i class="fab fa-tiktok text-lg text-emerald-400"></i>
+                            <span>TikTok</span>
+                        </a>
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/share/14oRtMyQTES/" target="_blank" rel="noopener noreferrer" class="btn-facebook py-3 px-3 rounded-2xl flex items-center justify-center gap-2 text-xs font-bold active:scale-95">
+                            <i class="fab fa-facebook-f text-base"></i>
+                            <span>Facebook</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Ubicación de la Oficina -->
+                <div class="w-full bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 mt-5 text-left text-xs text-slate-300 shadow-sm">
+                    <div class="flex items-start gap-3">
+                        <div class="bg-amber-500/10 p-2.5 rounded-xl text-amber-400 flex-shrink-0 border border-amber-500/20">
+                            <i class="fas fa-map-marker-alt text-base"></i>
+                        </div>
+                        <div class="w-full">
+                            <span class="block font-bold text-white text-sm">Oficina Bufete Jurídico:</span>
+                            <span class="block text-slate-300 mt-1 leading-relaxed font-normal">
+                                11 calle 4-52 zona 1, Edificio Asturias, Segundo Nivel, Oficina 7, Ciudad de Guatemala.
+                            </span>
+                            
+                            <!-- Botón Abrir Ubicación en Google Maps -->
+                            <a href="https://maps.google.com/?q=11+calle+4-52+zona+1+Edificio+Asturias+Ciudad+de+Guatemala" target="_blank" rel="noopener noreferrer" class="mt-3.5 inline-flex items-center gap-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/40 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm hover:scale-[1.02] active:scale-95 cursor-pointer w-full justify-center">
+                                <i class="fas fa-location-dot text-amber-400"></i>
+                                <span>Ver Localización en Mapa</span>
+                                <i class="fas fa-external-link-alt text-[10px] opacity-75 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Horarios de Atención -->
+                <div class="w-full bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 mt-4 text-left text-xs text-slate-300 shadow-sm">
+                    <div class="flex items-center gap-2.5 mb-3 border-b border-slate-700/80 pb-2">
+                        <div class="p-1.5 rounded-lg bg-amber-500/10 text-amber-400 flex-shrink-0 border border-amber-500/20">
+                            <i class="fas fa-clock text-xs"></i>
+                        </div>
+                        <span class="font-bold text-amber-400 text-xs uppercase tracking-wider">Horario de Atención</span>
+                    </div>
+                    <div class="space-y-2 text-xs font-medium">
+                        <div class="flex items-center justify-between text-slate-300 bg-slate-900/60 p-2 rounded-xl border border-slate-700/50">
+                            <span class="flex items-center gap-2">
+                                <i class="fas fa-calendar-day text-amber-400 text-[11px]"></i>
+                                <span>Lunes a Viernes</span>
+                            </span>
+                            <span class="font-bold text-amber-300 bg-amber-950/60 px-2.5 py-0.5 rounded-lg border border-amber-500/40">8:00 am - 6:00 pm</span>
+                        </div>
+                        <div class="flex items-center justify-between text-slate-300 bg-slate-900/60 p-2 rounded-xl border border-slate-700/50">
+                            <span class="flex items-center gap-2">
+                                <i class="fas fa-calendar-day text-amber-400 text-[11px]"></i>
+                                <span>Sábados</span>
+                            </span>
+                            <span class="font-bold text-amber-300 bg-amber-950/60 px-2.5 py-0.5 rounded-lg border border-amber-500/40">8:00 am - 5:00 pm</span>
+                        </div>
+                        <div class="flex items-center justify-between text-slate-300 bg-slate-900/60 p-2 rounded-xl border border-slate-700/50">
+                            <span class="flex items-center gap-2">
+                                <i class="fas fa-user-clock text-amber-400 text-[11px]"></i>
+                                <span>Domingos</span>
+                            </span>
+                            <span class="font-bold text-amber-300 bg-amber-950/60 px-2.5 py-0.5 rounded-lg border border-amber-500/40">Con previa cita</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- WhatsApp Consulta Legal -->
+                <div class="flex flex-col gap-3 w-full max-w-xs mx-auto mt-6">
+                    
+                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Contacto Directo e Inmediato</span>
+
+                    <!-- Botón WhatsApp Principal Centrado -->
+                    <a href="https://wa.me/50237281134?text=Hola%20BOCHE%20%26%20ASOCIADOS,%20deseo%20solicitar%20asesor%C3%ADa%20legal" target="_blank" rel="noopener noreferrer" class="btn-whatsapp flex items-center justify-center gap-3 font-extrabold py-3.5 px-5 rounded-2xl text-xs tracking-wide active:scale-95 shadow-md">
+                        <i class="fab fa-whatsapp text-2xl text-emerald-300"></i>
+                        <div class="text-center">
+                            <span class="block text-[10px] text-emerald-100 font-medium uppercase tracking-wider">WhatsApp Consulta Legal</span>
+                            <span class="text-base font-extrabold tracking-wide text-white">+502 3728 1134</span>
+                        </div>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer corporativo -->
+        <div class="bg-slate-950 text-center py-4 px-4 text-[11px] font-medium border-t border-slate-800/80 text-slate-400">
+            <p class="flex items-center justify-center gap-1.5">
+                <span>🇬🇹</span> 
+                <span class="font-bold text-amber-400 serif-font">BOCHE & ASOCIADOS</span> 
+                <span>• Servicios Jurídicos y Financieros</span>
+            </p>
+            <p class="text-[10px] text-slate-500 mt-1">Ciudad de Guatemala, Guatemala. Todos los derechos reservados.</p>
+        </div>
+    </div>
+
+    <!-- Toast de Notificación -->
+    <div id="toast" class="toast-notification fixed bottom-5 left-1/2 -translate-x-1/2 bg-slate-900 text-white font-bold px-5 py-2.5 rounded-full text-xs shadow-2xl z-50 flex items-center gap-2 border border-amber-500/40">
+        <i class="fas fa-info-circle text-amber-400"></i>
+        <span id="toast-message">Enlace copiado al portapapeles</span>
+    </div>
+
+    <script>
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function shareCard() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'BOCHE & ASOCIADOS - Asesoría Jurídica-Financiera y Servicios Notariales',
+                    text: 'Te comparto la tarjeta digital de BOCHE & ASOCIADOS',
+                    url: window.location.href
+                }).catch(() => {
+                    copyToClipboard(window.location.href);
+                });
+            } else {
+                copyToClipboard(window.location.href);
+            }
+        }
+
+        function copyToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast("Enlace de la tarjeta copiado al portapapeles");
+            } catch (err) {
+                showToast("No se pudo copiar el enlace");
+            }
+            document.body.removeChild(textArea);
+        }
+    </script>
+</body>
+</html>
